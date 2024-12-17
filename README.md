@@ -76,7 +76,7 @@ Ensure you have the following installed:
     pip install -r requirements.txt
 3. Run the project scripts:
    ```bash
-    python model_training.py
+    python app.py
 
 
 ## Usage
