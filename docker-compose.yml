@@ -1,0 +1,16 @@
+version: '3.12'
+
+services:
+  crop_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5008:5008"
+    volumes:
+      - ./static:/app/static
+      - ./templates:/app/templates
+      - ./crops_info.json:/app/crops_info.json
+    environment:
+      FLASK_ENV: development
+    container_name: crop_app_container

@@ -1,0 +1,275 @@
+{
+  "aycicegi": {
+    "ideal_temperature": "15-20°C",
+    "ideal_soil_ph": "6.0-7.0",
+    "su_ihtiyaci": "Orta",
+    "toprak_tipi": "Verimli, iyi drene edilmiş toprak",
+    "gelişim_süresi": "120-150 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Yüksek",
+    "yaygın_zararli_organizmalar": "Tahıl yaprak biti, mantar hastalıkları"
+  },
+  "bugday": {
+    "ideal_temperature": "15-20°C",
+    "ideal_soil_ph": "6.0-7.0",
+    "su_ihtiyaci": "Orta",
+    "toprak_tipi": "Verimli, iyi drene edilmiş toprak",
+    "gelişim_süresi": "120-150 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Yüksek",
+    "yaygın_zararli_organizmalar": "Tahıl yaprak biti, mantar hastalıkları"
+  },
+  "arpa": {
+    "ideal_temperature": "10-15°C",
+    "ideal_soil_ph": "6.0-7.5",
+    "su_ihtiyaci": "Düşük",
+    "toprak_tipi": "Kumlu, iyi drene edilmiş toprak",
+    "gelişim_süresi": "90-120 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Orta",
+    "yaygın_zararli_organizmalar": "Kök mantarları, yaprak bitleri"
+  },
+  "misir": {
+    "ideal_temperature": "25-30°C",
+    "ideal_soil_ph": "5.5-7.0",
+    "su_ihtiyaci": "Yüksek",
+    "toprak_tipi": "Derin, verimli toprak",
+    "gelişim_süresi": "80-120 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Düşük",
+    "yaygın_zararli_organizmalar": "Mısır kurdu, yaprak bitleri"
+  },
+  "yulaf": {
+    "ideal_temperature": "15-20°C",
+    "ideal_soil_ph": "6.0-7.0",
+    "su_ihtiyaci": "Orta",
+    "toprak_tipi": "Nem tutma kapasitesi yüksek toprak",
+    "gelişim_süresi": "90-120 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Yüksek",
+    "yaygın_zararli_organizmalar": "Yulaf kara pası, yaprak bitleri"
+  },
+  "cavdar": {
+    "ideal_temperature": "5-15°C",
+    "ideal_soil_ph": "6.0-7.5",
+    "su_ihtiyaci": "Düşük",
+    "toprak_tipi": "Az verimli, kuru toprak",
+    "gelişim_süresi": "120-150 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Yüksek",
+    "yaygın_zararli_organizmalar": "Tahıl yaprak biti, mantar hastalıkları"
+  },
+  "nohut": {
+    "ideal_temperature": "20-30°C",
+    "ideal_soil_ph": "6.0-7.5",
+    "su_ihtiyaci": "Düşük",
+    "toprak_tipi": "Az verimli, iyi drene edilmiş toprak",
+    "gelişim_süresi": "90-120 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Düşük",
+    "yaygın_zararli_organizmalar": "Nohut kök çürüklüğü, yaprak bitleri"
+  },
+  "mercimek": {
+    "ideal_temperature": "18-25°C",
+    "ideal_soil_ph": "6.0-7.5",
+    "su_ihtiyaci": "Orta",
+    "toprak_tipi": "İyi drene edilmiş, verimli toprak",
+    "gelişim_süresi": "100-120 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Düşük",
+    "yaygın_zararli_organizmalar": "Mercimek böceği, kök mantarları"
+  },
+  "fasulye": {
+    "ideal_temperature": "20-30°C",
+    "ideal_soil_ph": "6.0-7.5",
+    "su_ihtiyaci": "Yüksek",
+    "toprak_tipi": "Nemli, verimli toprak",
+    "gelişim_süresi": "60-90 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Düşük",
+    "yaygın_zararli_organizmalar": "Yaprak bitleri, beyaz sinek"
+  },
+  "bezelye": {
+    "ideal_temperature": "15-20°C",
+    "ideal_soil_ph": "6.0-7.0",
+    "su_ihtiyaci": "Orta",
+    "toprak_tipi": "İyi drene edilmiş, killi toprak",
+    "gelişim_süresi": "50-70 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Düşük",
+    "yaygın_zararli_organizmalar": "Bezelye yaprak biti, mantar hastalıkları"
+  },
+  "kuru_sogan": {
+    "ideal_temperature": "15-20°C",
+    "ideal_soil_ph": "6.0-7.0",
+    "su_ihtiyaci": "Orta",
+    "toprak_tipi": "İyi drene edilmiş, kumlu toprak",
+    "gelişim_süresi": "120-150 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Orta",
+    "yaygın_zararli_organizmalar": "Soğan sineği, yaprak mantarları"
+  },
+  "domates": {
+    "ideal_temperature": "18-25°C",
+    "ideal_soil_ph": "6.0-7.0",
+    "su_ihtiyaci": "Yüksek",
+    "toprak_tipi": "Verimli, iyi drene edilmiş toprak",
+    "gelişim_süresi": "60-100 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Düşük",
+    "yaygın_zararli_organizmalar": "Domates böceği, yaprak küfü"
+  },
+  "biber": {
+    "ideal_temperature": "20-30°C",
+    "ideal_soil_ph": "6.0-7.0",
+    "su_ihtiyaci": "Yüksek",
+    "toprak_tipi": "Verimli, iyi drene edilmiş toprak",
+    "gelişim_süresi": "60-90 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Düşük",
+    "yaygın_zararli_organizmalar": "Yaprak bitleri, beyaz sinek"
+  },
+  "salatalik": {
+    "ideal_temperature": "20-25°C",
+    "ideal_soil_ph": "6.0-7.5",
+    "su_ihtiyaci": "Yüksek",
+    "toprak_tipi": "Verimli, nemli toprak",
+    "gelişim_süresi": "50-70 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Düşük",
+    "yaygın_zararli_organizmalar": "Salatalık böceği, yaprak mantarları"
+  },
+  "havuc": {
+    "ideal_temperature": "15-20°C",
+    "ideal_soil_ph": "6.0-7.0",
+    "su_ihtiyaci": "Orta",
+    "toprak_tipi": "Derin, iyi drene edilmiş toprak",
+    "gelişim_süresi": "70-90 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Orta",
+    "yaygın_zararli_organizmalar": "Havuç sineği, kök çürüklüğü"
+  },
+  "patates": {
+    "ideal_temperature": "15-20°C",
+    "ideal_soil_ph": "5.5-6.5",
+    "su_ihtiyaci": "Orta",
+    "toprak_tipi": "İyi drene olmuş, verimli toprak",
+    "gelişim_süresi": "100-150 gün",
+    "güneş_ihtiyacı": "Tam güneş",
+    "don_toleransı": "Orta",
+    "yaygın_zararli_organizmalar": "Patates böceği, virüsler"
+  },
+  "sogan": {
+    "ideal_temperature": "15-20°C",
+    "ideal_soil_ph": "6.0-7.0",
+    "su_ihtiyaci": "Orta",
+      "toprak_tipi": "Kumlu, iyi drene edilmiş toprak",
+      "gelişim_süresi": "120-150 gün",
+      "güneş_ihtiyacı": "Tam güneş",
+      "don_toleransı": "Orta",
+      "yaygın_zararli_organizmalar": "Soğan sineği, yaprak mantarları"
+    },
+  
+    "sarimsak": {
+        "ideal_temperature": "12-24°C",
+        "ideal_soil_ph": "6.0-7.5",
+        "su_ihtiyaci": "Orta",
+        "toprak_tipi": "Kumlu ve iyi drene edilmiş toprak",
+        "gelişim_süresi": "90-120 gün",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Yüksek",
+        "yaygın_zararli_organizmalar": "Soğan sineği, kök mantarları"
+    },
+    "elma": {
+        "ideal_temperature": "15-20°C",
+        "ideal_soil_ph": "6.0-7.0",
+        "su_ihtiyaci": "Orta",
+        "toprak_tipi": "Verimli ve iyi drene edilmiş toprak",
+        "gelişim_süresi": "2-5 yıl (ağaç olgunlaşması)",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Orta",
+        "yaygın_zararli_organizmalar": "Elma iç kurdu, yaprak bitleri"
+    },
+    "armut": {
+        "ideal_temperature": "18-24°C",
+        "ideal_soil_ph": "6.0-7.5",
+        "su_ihtiyaci": "Orta",
+        "toprak_tipi": "Humuslu ve iyi drene edilmiş toprak",
+        "gelişim_süresi": "3-5 yıl (ağaç olgunlaşması)",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Orta",
+        "yaygın_zararli_organizmalar": "Akarlar, armut iç kurdu"
+    },
+    "uzum": {
+        "ideal_temperature": "15-25°C",
+        "ideal_soil_ph": "5.5-7.0",
+        "su_ihtiyaci": "Düşük",
+        "toprak_tipi": "İyi drene edilmiş, hafif toprak",
+        "gelişim_süresi": "3-5 yıl (asma olgunlaşması)",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Düşük",
+        "yaygın_zararli_organizmalar": "Unlu bitler, külleme"
+    },
+    "kiraz": {
+        "ideal_temperature": "18-25°C",
+        "ideal_soil_ph": "6.0-7.5",
+        "su_ihtiyaci": "Orta",
+        "toprak_tipi": "Derin, iyi drene edilmiş toprak",
+        "gelişim_süresi": "4-7 yıl (ağaç olgunlaşması)",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Orta",
+        "yaygın_zararli_organizmalar": "Kiraz sineği, külleme"
+    },
+    "nar": {
+        "ideal_temperature": "20-30°C",
+        "ideal_soil_ph": "5.5-7.5",
+        "su_ihtiyaci": "Düşük",
+        "toprak_tipi": "Kumlu ve hafif asidik toprak",
+        "gelişim_süresi": "3-4 yıl (ağaç olgunlaşması)",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Düşük",
+        "yaygın_zararli_organizmalar": "Nar akarı, yaprak mantarları"
+    },
+    "portakal": {
+        "ideal_temperature": "20-30°C",
+        "ideal_soil_ph": "6.0-7.5",
+        "su_ihtiyaci": "Orta",
+        "toprak_tipi": "Verimli ve iyi drene edilmiş toprak",
+        "gelişim_süresi": "3-5 yıl (ağaç olgunlaşması)",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Düşük",
+        "yaygın_zararli_organizmalar": "Portakal iç kurdu, yaprak bitleri"
+      },
+      "limon": {
+        "ideal_temperature": "20-30°C",
+        "ideal_soil_ph": "5.5-7.5",
+        "su_ihtiyaci": "Orta",
+        "toprak_tipi": "Kumlu ve iyi drene edilmiş toprak",
+        "gelişim_süresi": "3-5 yıl (ağaç olgunlaşması)",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Düşük",
+        "yaygın_zararli_organizmalar": "Akdiken mantarı, yaprak bitleri"
+    },
+    "zeytin": {
+        "ideal_temperature": "15-30°C",
+        "ideal_soil_ph": "5.5-8.5",
+        "su_ihtiyaci": "Düşük",
+        "toprak_tipi": "Kireçli ve iyi drene edilmiş toprak",
+        "gelişim_süresi": "5-8 yıl (ağaç olgunlaşması)",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Düşük",
+        "yaygın_zararli_organizmalar": "Zeytin sineği, kök mantarları"
+    },
+    "pamuk": {
+        "ideal_temperature": "20-35°C",
+        "ideal_soil_ph": "5.5-7.5",
+        "su_ihtiyaci": "Yüksek",
+        "toprak_tipi": "Derin, iyi drene edilmiş toprak",
+        "gelişim_süresi": "150-180 gün",
+        "güneş_ihtiyacı": "Tam güneş",
+        "don_toleransı": "Düşük",
+        "yaygın_zararli_organizmalar": "Pamuk kurdu, yaprak mantarları"
+    }
+    
+    
+}
