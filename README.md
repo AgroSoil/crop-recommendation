@@ -79,7 +79,7 @@ Ensure you have the following installed:
     python model_training.py
 
 
-   ## Usage
+## Usage
 
 ### Prepare Input Data:
 - Provide soil parameters (pH, N, P, K, ORG, HUM) and regional information.
@@ -92,4 +92,7 @@ Ensure you have the following installed:
 new_sample = [[6.2, 33, 28, 290, 2.9, 71]]  # Soil properties
 predicted_label = model.predict(new_sample_df)
 print("Recommended Crop: ", label_encoder.inverse_transform(predicted_label)[0])
+```
 
+## CONTACT:
+For any questions or issues, please contact ozgulbaytekin or sedefelms.
