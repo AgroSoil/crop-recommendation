@@ -71,3 +71,25 @@ Ensure you have the following installed:
    ```bash
    git clone https://github.com/your-organization/crop-recommendation-system.git
    cd crop-recommendation-system
+2. Install dependencies:
+   ```bash
+    pip install -r requirements.txt
+3. Run the project scripts:
+   ```bash
+    python model_training.py
+
+
+   ## Usage
+
+### Prepare Input Data:
+- Provide soil parameters (pH, N, P, K, ORG, HUM) and regional information.
+
+### Run the Model:
+- Use the trained model to predict suitable crops.
+
+### Example Prediction:
+```python
+new_sample = [[6.2, 33, 28, 290, 2.9, 71]]  # Soil properties
+predicted_label = model.predict(new_sample_df)
+print("Recommended Crop: ", label_encoder.inverse_transform(predicted_label)[0])
+
