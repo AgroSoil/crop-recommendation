@@ -25,6 +25,20 @@
             <!-- Soil Prediction Form -->
             <form id="predictionForm" class="form-group">
                 <div class="form-group mb-3">
+                    <label for="region">Bölge:</label>
+                    <select id="region" name="region" class="form-select" required>
+                        <option value="" disabled selected>Bölge seçiniz</option>
+                        <option value="MARMARA">Marmara Bölgesi</option>
+                        <option value="AEGEA">Ege Bölgesi</option>
+                        <option value="MEDITERRANEAN">Akdeniz Bölgesi</option>
+                        <option value="CENTRAL_ANATOLIA">İç Anadolu Bölgesi</option>
+                        <option value="EASTERN_ANATOLIA">Doğu Anadolu Bölgesi</option>
+                        <option value="BLACK_SEA">Karadeniz Bölgesi</option>
+                        <option value="SOUTHERN_ANATOLIA">Güneydoğu Anadolu Bölgesi</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
                     <label for="ph">PH:</label>
                     <input type="number" id="ph" name="PH" class="form-control" step="0.1" required>
                 </div>
@@ -82,133 +96,128 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-document.getElementById('predictionForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+        document.getElementById('predictionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    // Form verilerini topla
-    const data = {
-        PH: document.getElementById('ph').value,
-        N: document.getElementById('N').value,
-        P: document.getElementById('P').value,
-        K: document.getElementById('K').value,
-        ORG: document.getElementById('org').value,
-        HUM: document.getElementById('HUM').value
-    };
+            const selectedRegion = document.getElementById('region').value;
 
-    // Bitki isimlerini eşleyen bir nesne
-    const cropNames = {
-        "bugday": "Buğday",
-        "arpa": "Arpa",
-        "misir": "Mısır",
-        "yulaf": "Yulaf",
-        "cavdar": "Çavdar",
-        "nohut": "Nohut",
-        "mercimek": "Mercimek",
-        "fasulye": "Fasulye",
-        "bezelye": "Bezelye",
-        "kuru_sogan": "Kuru Soğan",
-        "domates": "Domates",
-        "biber": "Biber",
-        "salatalik": "Salatalık",
-        "havuc": "Havuç",
-        "patates": "Patates",
-        "sogan": "Soğan",
-        "sarimsak": "Sarımsak",
-        "elma": "Elma",
-        "armut": "Armut",
-        "uzum": "Üzüm",
-        "kiraz": "Kiraz",
-        "nar": "Nar",
-        "portakal": "Portakal",
-        "limon": "Limon",
-        "zeytin": "Zeytin",
-        "pamuk": "Pamuk",
-        "tutun": "Tütün",
-        "aycicegi": "Ayçiçeği",
-        "soya_fasulyesi": "Soya Fasulyesi",
-        "seker_pancari": "Şeker Pancarı",
-        "lavanta": "Lavanta",
-        "kekik": "Kekik",
-        "feslegen": "Fesleğen"
-    };
+            const regions = {
+                REGION_MARMARA: 0,
+                REGION_AEGEA: 0,
+                REGION_MEDITERRANEAN: 0,
+                REGION_CENTRAL_ANATOLIA: 0,
+                REGION_EASTERN_ANATOLIA: 0,
+                REGION_BLACK_SEA: 0,
+                REGION_SOUTHERN_ANATOLIA: 0
+            };
 
-    fetch('/predict', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        const results = data.predicted_crops;
+            regions[`REGION_${selectedRegion}`] = 1;
 
-        let resultHTML = `<h2>En İyi 3 Tarımsal Bitki Önerisi</h2><ul class="list-group">`;
-        if (results && results.length > 0) {
-            results.slice(0, 3).forEach(item => {
-                const formattedName = cropNames[item.crop.toLowerCase()] || item.crop;
-                resultHTML += `<li class="list-group-item">
-                    <a href="#" class="crop-link" 
-                        data-name="${formattedName}" 
-                        data-temperature="${item.info.ideal_temperature || ''}"
-                        data-ph="${item.info.ideal_soil_ph || ''}"
-                        data-water="${item.info.water_requirements || ''}">
-                        ${formattedName}
-                    </a>
-                </li>`;
+            const data = {
+                PH: document.getElementById('ph').value,
+                N: document.getElementById('N').value,
+                P: document.getElementById('P').value,
+                K: document.getElementById('K').value,
+                ORG: document.getElementById('org').value,
+                HUM: document.getElementById('HUM').value,
+                ...regions
+            };
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const results = data.predicted_crops;
+                const cropNames = {
+                    "bugday": "Buğday",
+                    "arpa": "Arpa",
+                    "misir": "Mısır",
+                    "yulaf": "Yulaf",
+                    "cavdar": "Çavdar",
+                    "nohut": "Nohut",
+                    "mercimek": "Mercimek",
+                    "fasulye": "Fasulye",
+                    "bezelye": "Bezelye",
+                    "kuru_sogan": "Kuru Soğan",
+                    "domates": "Domates",
+                    "biber": "Biber",
+                    "salatalik": "Salatalık",
+                    "havuc": "Havuç",
+                    "patates": "Patates",
+                    "sogan": "Soğan",
+                    "sarimsak": "Sarımsak",
+                    "elma": "Elma",
+                    "armut": "Armut",
+                    "uzum": "Üzüm",
+                    "kiraz": "Kiraz",
+                    "nar": "Nar",
+                    "portakal": "Portakal",
+                    "limon": "Limon",
+                    "zeytin": "Zeytin",
+                    "pamuk": "Pamuk",
+                    "tutun": "Tütün",
+                    "aycicegi": "Ayçiçeği",
+                    "soya_fasulyesi": "Soya Fasulyesi",
+                    "seker_pancari": "Şeker Pancarı",
+                    "lavanta": "Lavanta",
+                    "kekik": "Kekik",
+                    "feslegen": "Fesleğen"
+                };
+                let resultHTML = `<h2>En İyi 3 Tarımsal Bitki Önerisi</h2><ul class="list-group">`;
+                results.slice(0, 3).forEach(item => {
+                    const formattedName = cropNames[item.crop.toLowerCase()] || item.crop;
+                    const details = item.info;
+                    resultHTML += `
+                        <li class="list-group-item">
+                            <a href="#" class="crop-link" 
+                                data-name="${formattedName}" 
+                                data-temperature="${details.ideal_temperature || 'Bilinmiyor'}" 
+                                data-ph="${details.ideal_soil_ph || 'Bilinmiyor'}" 
+                                data-water="${details.water_requirements || 'Bilinmiyor'}" 
+                                data-soil-type="${details.soil_type || 'Bilinmiyor'}" 
+                                data-growth-time="${details.growth_time || 'Bilinmiyor'}" 
+                                data-sunlight="${details.sunlight || 'Bilinmiyor'}" 
+                                data-frost-tolerance="${details.frost_tolerance || 'Bilinmiyor'}" 
+                                data-pests="${details.pests || 'Bilinmiyor'}">
+                                ${formattedName}
+                            </a>
+                        </li>`;
+                });
+                resultHTML += `</ul>`;
+                document.getElementById('result').innerHTML = resultHTML;
+
+                document.querySelectorAll('.crop-link').forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const cropName = this.getAttribute('data-name');
+                        const details = `
+                            <strong>İdeal Sıcaklık:</strong> ${this.getAttribute('data-temperature')}<br>
+                            <strong>İdeal Toprak PH'ı:</strong> ${this.getAttribute('data-ph')}<br>
+                            <strong>Su İhtiyacı:</strong> ${this.getAttribute('data-water')}<br>
+                            <strong>Toprak Tipi:</strong> ${this.getAttribute('data-soil-type')}<br>
+                            <strong>Büyüme Süresi:</strong> ${this.getAttribute('data-growth-time')}<br>
+                            <strong>Güneş İhtiyacı:</strong> ${this.getAttribute('data-sunlight')}<br>
+                            <strong>Don Toleransı:</strong> ${this.getAttribute('data-frost-tolerance')}<br>
+                            <strong>Yaygın Zararlılar:</strong> ${this.getAttribute('data-pests')}<br>
+                        `;
+                        document.getElementById('cropName').textContent = cropName;
+                        document.getElementById('cropDetails').innerHTML = details;
+
+                        const modal = new bootstrap.Modal(document.getElementById('cropModal'));
+                        modal.show();
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = '<p>Bir hata oluştu, lütfen tekrar deneyin.</p>';
             });
-        } else {
-            resultHTML = '<p>Tahmin yapılamadı. Lütfen tekrar deneyin.</p>';
-        }
-        resultHTML += `</ul>`;
-        document.getElementById('result').innerHTML = resultHTML;
-
-        document.querySelectorAll('.crop-link').forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-
-        const cropName = this.getAttribute('data-name');
-        const cropTemperature = this.getAttribute('data-temperature');
-        const cropPh = this.getAttribute('data-ph');
-        const cropWater = this.getAttribute('data-water');
-        const cropSoilType = this.getAttribute('data-soil-type');
-        const cropGrowthTime = this.getAttribute('data-growth-time');
-        const cropSunlight = this.getAttribute('data-sunlight');
-        const cropFrostTolerance = this.getAttribute('data-frost-tolerance');
-        const cropPests = this.getAttribute('data-pests');
-
-        // Update modal title
-        document.getElementById('cropName').textContent = cropName;
-
-        // Populate modal details
-        let cropDetails = `<strong>İdeal Sıcaklık:</strong> ${cropTemperature || 'Bilgi yok'}<br>`;
-        cropDetails += `<strong>İdeal Toprak PH'ı:</strong> ${cropPh || 'Bilgi yok'}<br>`;
-        cropDetails += `<strong>Su İhtiyacı:</strong> ${cropWater || 'Bilgi yok'}<br>`;
-        cropDetails += `<strong>Toprak Tipi:</strong> ${cropSoilType || 'Bilgi yok'}<br>`;
-        cropDetails += `<strong>Büyüme Süresi:</strong> ${cropGrowthTime || 'Bilgi yok'}<br>`;
-        cropDetails += `<strong>Güneş İhtiyacı:</strong> ${cropSunlight || 'Bilgi yok'}<br>`;
-        cropDetails += `<strong>Don Toleransı:</strong> ${cropFrostTolerance || 'Bilgi yok'}<br>`;
-        cropDetails += `<strong>Yaygın Zararlılar:</strong> ${cropPests || 'Bilgi yok'}<br>`;
-
-        if (!cropDetails.trim()) {
-            cropDetails = '<p>No additional information available.</p>';
-        }
-
-        // Insert into modal body
-        document.getElementById('cropDetails').innerHTML = cropDetails;
-
-        // Show modal
-        const myModal = new bootstrap.Modal(document.getElementById('cropModal'));
-        myModal.show();
-    });
-});
-
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('result').innerHTML = '<p>There was an error processing the request. Please try again later.</p>';
-    });
-});
+        });
     </script>
 </body>
 </html>
