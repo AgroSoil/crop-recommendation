@@ -1,27 +1,30 @@
-
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
-# Veriyi yükleme
+
+# Load the dataset
 df = pd.read_csv("/home/ozgul/Desktop/crop_dataset.csv")
-x = df[["PH", "N(mg/kg)", "P(mg/kg)", "K(mg/kg)", "ORG(%)", "HUM(%)"]]
-y = df[["CROP"]].values.ravel()
-# LabelEncoder ile hedef değişkenleri kodla
+
+# Features: PH, N, P, K, ORG, HUM, and regional columns
+feature_columns = ["PH", "N(mg/kg)", "P(mg/kg)", "K(mg/kg)", "ORG(%)", "HUM(%)", 
+                   "REGION_MARMARA", "REGION_AEGEA", "REGION_MEDITERRANEAN", 
+                   "REGION_CENTRAL_ANATOLIA", "REGION_EASTERN_ANATOLIA", 
+                   "REGION_BLACK_SEA", "REGION_SOUTHERN_ANATOLIA"]
+
+# Extract features (X) and target (y)
+x = df[feature_columns]
+y = df["CROP"].values.ravel()
+
+# Encode the target variable
 label_encoder = LabelEncoder()
 y_encoded = label_encoder.fit_transform(y)
 
+# Split the data into training and testing sets
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y_encoded, test_size=0.22, random_state=42, stratify=y_encoded)
 
-
-
-
-
-
-
-# Eğitim ve test verisine bölüyoruz (test_size ile %20 test verisi, %80 eğitim verisi ayırıyoruz)
-x_train, x_test, y_train, y_test = train_test_split(x, y_encoded, test_size=0.22, random_state=42, stratify=y_encoded)
-
-# En iyi parametrelerle model oluşturuyoruz
+# Define the best parameters for the model
 best_params = {
     'bootstrap': False,
     'max_depth': 14,
@@ -30,42 +33,26 @@ best_params = {
     'min_samples_split': 5,
     'n_estimators': 322
 }
-# Modeli en iyi parametrelerle oluşturuyoruz
-model = RandomForestClassifier(**best_params, random_state=42)
 
-# Modeli eğitiyoruz
+# Create and train the model
+model = RandomForestClassifier(**best_params, random_state=42)
 model.fit(x_train, y_train)
 
-
-
-
-
-
-
-
-
-# Test verisi doğruluk skoru
+# Evaluate the model
 test_score = model.score(x_test, y_test)
-print("Test verisi doğruluk skoru: ", test_score)
+print("Test set accuracy score: ", test_score)
 
-# Çapraz doğrulama skoru
-from sklearn.model_selection import cross_val_score
+# Cross-validation scores
 scores = cross_val_score(model, x, y_encoded, cv=5)
-print("Çapraz doğrulama skorları:", scores)
-print("Ortalama doğruluk skoru:", scores.mean())
+print("Cross-validation scores:", scores)
+print("Average accuracy score:", scores.mean())
 
-
-
-
-
-
-
-
-
-# Yeni bir örnekle tahmin yapıyoruz
-new_sample = [[6.2, 33, 28, 290, 2.9, 71]]  # PH, N, P, K, ORG, HUM değerleri
-new_sample_df = pd.DataFrame(new_sample, columns=["PH", "N(mg/kg)", "P(mg/kg)", "K(mg/kg)", "ORG(%)", "HUM(%)"])
+# Predict on a new sample
+# Example: PH, N, P, K, ORG, HUM, and regions (e.g., Marmara=0, Aegea=1, Mediterranean=1)
+new_sample = [[6.2, 33, 28, 290, 2.9, 71, 0, 1, 0, 0, 0, 0, 0]]
+new_sample_df = pd.DataFrame(new_sample, columns=feature_columns)
 predicted_label = model.predict(new_sample_df)
-# Tahmin edilen bitkiyi dönüştürüyoruz
+
+# Convert the predicted label to the original crop name
 predicted_crop = label_encoder.inverse_transform(predicted_label)
-print("Tahmin edilen bitki: ", predicted_crop[0])
+print("Predicted crop: ", predicted_crop[0])
