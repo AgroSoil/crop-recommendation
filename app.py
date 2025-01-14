@@ -44,6 +44,23 @@ def prepare_features(data):
     """
     Prepare features in the correct order for model prediction
     """
+    # Validate inputs
+    if float(data['PH']) < 0 or float(data['PH']) > 14:
+        raise ValueError("PH value must be between 0 and 14.")
+    if float(data['N']) < 0 or float(data['P']) < 0 or float(data['K']) < 0:
+        raise ValueError("Nutrient values cannot be negative.")
+    if float(data['ORG']) < 0 or float(data['HUM']) < 0:
+        raise ValueError("Organic matter and humidity cannot be negative.")
+    
+    # Validate region
+    regions = [
+        "REGION_MARMARA", "REGION_AEGEA", "REGION_MEDITERRANEAN",
+        "REGION_CENTRAL_ANATOLIA", "REGION_EASTERN_ANATOLIA",
+        "REGION_BLACK_SEA", "REGION_SOUTHERN_ANATOLIA"
+    ]
+    if not any(data.get(region, 0) == 1 for region in regions):
+        raise ValueError("At least one valid region must be specified.")
+    
     features = [
         float(data['PH']),
         float(data['N']),
@@ -65,65 +82,43 @@ def prepare_features(data):
 def predict():
     try:
         data = request.get_json()
-        print("Received data:", data)  # Debug print
         
-        # Prepare features in the correct order
-        try:
-            features = prepare_features(data)
-            print("Prepared features:", features)  # Debug print
-        except Exception as e:
-            print("Error in prepare_features:", str(e))
-            raise
-
-        # Verify feature shape
-        print("Feature shape:", features.shape)  # Debug print
-
+        # Prepare features
+        features = prepare_features(data)
+        
         # Make prediction
-        try:
-            probabilities = model.predict_proba(features)[0]
-            print("Prediction probabilities:", probabilities)  # Debug print
-        except Exception as e:
-            print("Error in predict_proba:", str(e))
-            raise
-
+        probabilities = model.predict_proba(features)[0]
         top_3_indices = np.argsort(probabilities)[-3:][::-1]
         top_3_crops = label_encoder.inverse_transform(top_3_indices)
         top_3_confidences = probabilities[top_3_indices]
-
-        # Debug prints
-        print("Top 3 indices:", top_3_indices)
-        print("Top 3 crops:", top_3_crops)
-        print("Top 3 confidences:", top_3_confidences)
-
+        
         # Load crop info
-        try:
-            crops_info = load_crop_info()
-        except Exception as e:
-            print("Error loading crop info:", str(e))
-            crops_info = {}
-
-        results = []
-        for i in range(3):
-            crop = top_3_crops[i]
-            crop_info = crops_info.get(crop, {})
-            result = {
-                'crop': crop,
+        crops_info = load_crop_info()
+        results = [
+            {
+                'crop': top_3_crops[i],
                 'confidence': round(top_3_confidences[i] * 100, 2),
-                'info': crop_info
+                'info': crops_info.get(top_3_crops[i], {})
             }
-            results.append(result)
+            for i in range(3)
+        ]
 
         return jsonify({
             'predicted_crops': results,
             'model_accuracy': average_accuracy
         })
     
+    except ValueError as ve:
+        return jsonify({
+            'error': 'Invalid input',
+            'message': str(ve)
+        }), 400
     except Exception as e:
-        print(f"Error during prediction: {str(e)}")
         return jsonify({
             'error': 'Prediction failed',
             'message': str(e)
         }), 500
+
 
 @app.route('/get_crop_info', methods=['POST'])
 def get_crop_info():
