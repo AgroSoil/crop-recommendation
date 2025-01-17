@@ -7,8 +7,13 @@ import json
 
 
 app = Flask(__name__)
-CORS(app)
 
+# Belirli bir origin listesi ile CORS'u yapılandırıyoruz
+allowed_origins = [
+    "http://localhost:5008",  # Örneğin bir frontend uygulaması
+]
+
+CORS(app, resources={r"/*": {"origins": allowed_origins}})
 # Model ve LabelEncoder'ı yükledik
 model_path = os.path.join(os.path.dirname(__file__), 'random_forest_model.pkl')
 label_encoder_path = os.path.join(os.path.dirname(__file__), 'label_encoder.pkl')
