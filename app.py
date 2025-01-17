@@ -14,12 +14,15 @@ allowed_origins = [
 ]
 
 CORS(app, resources={r"/*": {"origins": allowed_origins}})
-# Model ve LabelEncoder'ı yükledik
+
+# Model, LabelEncoder ve Scaler'ı yükledik
 model_path = os.path.join(os.path.dirname(__file__), 'random_forest_model.pkl')
 label_encoder_path = os.path.join(os.path.dirname(__file__), 'label_encoder.pkl')
+scaler_path = os.path.join(os.path.dirname(__file__), 'scaler.pkl')
 
 model = joblib.load(model_path)
 label_encoder = joblib.load(label_encoder_path)
+scaler = joblib.load(scaler_path)
 
 # Eğitim sırasında elde edilen doğruluk skorunu burada belirttik
 average_accuracy = 0.720716566728697  
@@ -91,8 +94,11 @@ def predict():
         # Prepare features
         features = prepare_features(data)
         
+        # Apply scaling (important)
+        scaled_features = scaler.transform(features)  # Apply the saved scaler to the input features
+        
         # Make prediction
-        probabilities = model.predict_proba(features)[0]
+        probabilities = model.predict_proba(scaled_features)[0]
         top_3_indices = np.argsort(probabilities)[-3:][::-1]
         top_3_crops = label_encoder.inverse_transform(top_3_indices)
         top_3_confidences = probabilities[top_3_indices]
