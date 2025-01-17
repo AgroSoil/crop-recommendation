@@ -141,11 +141,35 @@ def index():
 # Add a health check endpoint
 @app.route('/health')
 def health_check():
-    return jsonify({
-        'status': 'healthy',
-        'model_loaded': model is not None,
-        'label_encoder_loaded': label_encoder is not None
-    })
+    try:
+        # Kontrol durumlarını belirle
+        model_loaded = model is not None
+        label_encoder_loaded = label_encoder is not None
+
+        # Eğer herhangi bir bileşen eksikse hata döndür
+        if not model_loaded or not label_encoder_loaded:
+            return jsonify({
+                'status': 'unhealthy',
+                'model_loaded': model_loaded,
+                'label_encoder_loaded': label_encoder_loaded,
+                'error': 'One or more critical components are not loaded'
+            }), 500
+
+        # Sağlıklı durum için dönen yanıt
+        return jsonify({
+            'status': 'healthy',
+            'model_loaded': model_loaded,
+            'label_encoder_loaded': label_encoder_loaded
+        }), 200
+
+    except Exception as e:
+        # Beklenmeyen bir hata durumunda yanıt
+        return jsonify({
+            'status': 'unhealthy',
+            'error': 'An unexpected error occurred',
+            'message': str(e)
+        }), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5008)

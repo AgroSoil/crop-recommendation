@@ -69,11 +69,11 @@ class TestCropPrediction(unittest.TestCase):
     def test_maximum_edge_case(self):
         data = {
             "PH": 14,
-            "N": 200,
-            "P": 200,
-            "K": 200,
-            "ORG": 20,
-            "HUM": 100,
+            "N": 800,
+            "P": 800,
+            "K": 800,
+            "ORG": 800,
+            "HUM": 800,
             "REGION_MEDITERRANEAN": 1
         }
         response = self.app.post('/predict', data=json.dumps(data), content_type='application/json')
