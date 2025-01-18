@@ -1,0 +1,67 @@
+[
+{
+    "test_accuracy": {
+        "accuracy": 0.0
+    }
+},
+{
+    "test_response_time": {
+        "average_time": 0.01621584892272949
+    }
+},
+{
+    "test_stress_test": {
+        "success_count": 100,
+        "total_requests": 100
+    }
+},
+{
+    "test_valid_input": {
+        "response_time": 0.014648199081420898,
+        "predicted_crops": [
+            {
+                "confidence": 30.52,
+                "crop": "aycicegi",
+                "info": {
+                    "frost_tolerance": "D\u00fc\u015f\u00fck",
+                    "growth_time": "3-4 ay",
+                    "ideal_soil_ph": "6.0-7.5",
+                    "ideal_temperature": "20-25\u00b0C",
+                    "pests": "Ay\u00e7i\u00e7e\u011fi g\u00fcvesi, tel kurdu",
+                    "soil_type": "Derin, verimli topraklar",
+                    "sunlight": "Tam g\u00fcne\u015f",
+                    "water_requirements": "500-750mm/sezon"
+                }
+            },
+            {
+                "confidence": 19.1,
+                "crop": "bezelye",
+                "info": {
+                    "frost_tolerance": "Orta",
+                    "growth_time": "2-3 ay",
+                    "ideal_soil_ph": "6.0-7.5",
+                    "ideal_temperature": "13-18\u00b0C",
+                    "pests": "Bezelye k\u00f6k \u00e7\u00fcr\u00fckl\u00fc\u011f\u00fc, yaprak biti",
+                    "soil_type": "\u0130yi drene edilmi\u015f topraklar",
+                    "sunlight": "Tam g\u00fcne\u015f",
+                    "water_requirements": "350-500mm/sezon"
+                }
+            },
+            {
+                "confidence": 13.98,
+                "crop": "yulaf",
+                "info": {
+                    "frost_tolerance": "Orta",
+                    "growth_time": "6-7 ay",
+                    "ideal_soil_ph": "5.0-6.5",
+                    "ideal_temperature": "16-20\u00b0C",
+                    "pests": "Yaprak biti, pas hastal\u0131klar\u0131",
+                    "soil_type": "Kumlu-t\u0131nl\u0131 topraklar",
+                    "sunlight": "Tam g\u00fcne\u015f",
+                    "water_requirements": "450-600mm/y\u0131l"
+                }
+            }
+        ]
+    }
+}
+]

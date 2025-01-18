@@ -13,17 +13,20 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy the requirements file and project files to the working directory
+# Copy the requirements file to the working directory
 COPY requirements.txt requirements.txt
-COPY crops_info.json /app/crops_info.json 
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Pin the scikit-learn version to match the version used during model training
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install scikit-learn==1.5.2
 
-# Copy the rest of the application files
+# Copy all necessary application and model files
 COPY app.py app.py
+COPY crops_info.json crops_info.json
 COPY random_forest_model.pkl random_forest_model.pkl
 COPY label_encoder.pkl label_encoder.pkl
+COPY scaler.pkl scaler.pkl  
 COPY templates/ templates/
 COPY static/ static/
 

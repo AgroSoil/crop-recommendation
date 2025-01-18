@@ -1,0 +1,185 @@
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, rgba(1, 119, 66, 0.9), rgba(0, 50, 30, 0.8));
+    background-size: cover;
+}
+
+/* Adding a subtle animation effect to the background */
+@keyframes backgroundMove {
+    0% { background-position: top left; }
+    100% { background-position: bottom right; }
+}
+
+body {
+    animation: backgroundMove 60s linear infinite;
+}
+
+/* Header styles */
+h1 {
+    color: #4CAF50;
+    font-size: 3rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
+}
+
+/* Container for the form */
+.container {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 15px;
+    padding: 3rem;  /* Increased padding for more space inside */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 85%;  /* Increased width for a larger container */
+    max-width: 700px;  /* Set a maximum width */
+    margin: 20px;
+}
+
+/* Add more padding to form elements for spaciousness */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  /* Increased gap between form elements */
+}
+
+/* Input fields */
+input[type="number"], select {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Input fields focus effect */
+input[type="number"]:focus, select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Modal Styling */
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.modal-header {
+    border-bottom: 2px solid #ddd;
+}
+
+.modal-body {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.modal-title {
+    color: #4CAF50;
+    font-size: 1.5rem;
+}
+
+/* Results section */
+#result {
+    margin-top: 30px;
+}
+
+/* List of crops */
+.list-group-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for crop names */
+.list-group-item:hover {
+    background-color: #e0f7e9;
+    cursor: pointer;
+}
+
+/* Crop details modal */
+#cropName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+#cropDetails {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Ensures smooth scrolling behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Fixed Background Animation */
+body {
+    background: linear-gradient(135deg, rgba(0, 51, 33, 0.7), rgba(0, 119, 66, 0.8));
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    color: #333;
+    background-attachment: fixed;
+    background-position: center center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Keyframes for smooth background gradient animation */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Additional container for center alignment */
+.container {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 15px;
+    padding: 3rem;  /* Increased padding for more space inside */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 85%;  /* Increased width for a larger container */
+    max-width: 700px;  /* Set a maximum width */
+    margin: 20px auto; /* Centered container */
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 2rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+}
