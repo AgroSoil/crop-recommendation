@@ -27,7 +27,7 @@ scaler = joblib.load(scaler_path)
 # Eğitim sırasında elde edilen doğruluk skorunu burada belirttik
 average_accuracy = 0.720716566728697  
 
-# Feature columns in the same order as training data
+# Sütunlar eğitim verisetindeki sütunlarla aynı isimde
 FEATURE_COLUMNS = [
     "PH", "N(mg/kg)", "P(mg/kg)", "K(mg/kg)", "ORG(%)", "HUM(%)",
     "REGION_MARMARA", "REGION_AEGEA", "REGION_MEDITERRANEAN",
@@ -52,7 +52,7 @@ def prepare_features(data):
     """
     Prepare features in the correct order for model prediction
     """
-    # Validate inputs
+    # input doğrulama
     if float(data['PH']) < 0 or float(data['PH']) > 14:
         raise ValueError("PH value must be between 0 and 14.")
     if float(data['N']) < 0 or float(data['P']) < 0 or float(data['K']) < 0:
@@ -60,7 +60,7 @@ def prepare_features(data):
     if float(data['ORG']) < 0 or float(data['HUM']) < 0:
         raise ValueError("Organic matter and humidity cannot be negative.")
     
-    # Validate region
+    # bölge doğrulama
     regions = [
         "REGION_MARMARA", "REGION_AEGEA", "REGION_MEDITERRANEAN",
         "REGION_CENTRAL_ANATOLIA", "REGION_EASTERN_ANATOLIA",
@@ -91,19 +91,19 @@ def predict():
     try:
         data = request.get_json()
         
-        # Prepare features
+        
         features = prepare_features(data)
         
-        # Apply scaling (important)
-        scaled_features = scaler.transform(features)  # Apply the saved scaler to the input features
+        # scaling uygulandı
+        scaled_features = scaler.transform(features)  # scaler girdilere uygulanıyor
         
-        # Make prediction
+        # tahmin yaptığımız kısım
         probabilities = model.predict_proba(scaled_features)[0]
         top_3_indices = np.argsort(probabilities)[-3:][::-1]
         top_3_crops = label_encoder.inverse_transform(top_3_indices)
         top_3_confidences = probabilities[top_3_indices]
         
-        # Load crop info
+        # bitki bilgilerini yüklediğimiz kısım
         crops_info = load_crop_info()
         results = [
             {
@@ -149,7 +149,7 @@ def get_crop_info():
 def index():
     return render_template('index.html')
 
-# Add a health check endpoint
+# health check endpoint
 @app.route('/health')
 def health_check():
     try:
