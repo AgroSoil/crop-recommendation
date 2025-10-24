@@ -32,7 +32,7 @@ class TestCropPrediction(unittest.TestCase):
         response_data = response.get_json()
         self.assertIn('predicted_crops', response_data)
 
-        # Log results
+        
         self.log_test_results("test_valid_input", {
             "response_time": elapsed_time,
             "predicted_crops": response_data.get('predicted_crops', [])
@@ -53,12 +53,12 @@ class TestCropPrediction(unittest.TestCase):
         self.assertIn('error', response_data)
 
    
-        """Test model accuracy with predefined test cases."""
+        """test model accuracy with predefined test cases."""
         test_data = [
             {"input": {"PH": 6.5, "N": 20, "P": 10, "K": 15, "ORG": 3, "HUM": 15, "REGION_MARMARA": 1},
              "expected": ["wheat", "barley"]},  # Replace with actual expected crops
             {"input": {"PH": 7.2, "N": 40, "P": 20, "K": 25, "ORG": 4, "HUM": 30, "REGION_AEGEA": 1},
-             "expected": ["corn"]}  # Replace with actual expected crops
+             "expected": ["corn"]}  # asıl beklenen bitkiler ile değiştiriyoruz
         ]
         correct_predictions = 0
         total_predictions = len(test_data)
@@ -68,10 +68,10 @@ class TestCropPrediction(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             response_data = response.get_json()
 
-            # Debugging: Print the structure of 'response_data'
+            #debugging
             print("Response Data:", response_data)
 
-            # Extract crop names from the dictionaries in 'predicted_crops'
+           
             predicted_crops = [
                 crop.get('name') for crop in response_data.get('predicted_crops', []) if 'name' in crop
             ]
@@ -97,7 +97,7 @@ class TestCropPrediction(unittest.TestCase):
         }
         response_times = []
 
-        for _ in range(10):  # Perform multiple requests to measure average response time
+        for _ in range(10):  # response time ölçmek için multiple requests 
             start_time = time.time()
             response = self.app.post('/predict', data=json.dumps(data), content_type='application/json')
             elapsed_time = time.time() - start_time
@@ -105,7 +105,7 @@ class TestCropPrediction(unittest.TestCase):
             response_times.append(elapsed_time)
 
         avg_response_time = sum(response_times) / len(response_times)
-        # Log response time
+        # log response time
         self.log_test_results("test_response_time", {"average_time": avg_response_time})
 
     def test_stress_test(self):
@@ -122,7 +122,7 @@ class TestCropPrediction(unittest.TestCase):
         responses = [self.app.post('/predict', data=json.dumps(data), content_type='application/json') for _ in range(100)]
         success_count = sum(1 for response in responses if response.status_code == 200)
 
-        # Log stress test results
+        # Log stress test sonuçları
         self.log_test_results("test_stress_test", {"success_count": success_count, "total_requests": 100})
 
 
